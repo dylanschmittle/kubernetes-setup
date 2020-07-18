@@ -33,6 +33,8 @@ fi
 echo "Installing Mattermost Operator"
 kubectl apply -n mattermost-operator -f mattermost-operator.yaml
 
-
+echo "Setup Mattermost Manifest"
+kubectl create ns mattermost
+kubectl apply -n mattermost -f mattermost.yaml
 
 

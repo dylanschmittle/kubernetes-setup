@@ -28,6 +28,9 @@ spec:
       - image: jitsi/etherpad:latest
         imagePullPolicy: Always
         name: etherpad
+        envFrom:
+        - configMapRef:
+            name: my-config
         resources: {}
       restartPolicy: Always
       serviceAccountName: ""

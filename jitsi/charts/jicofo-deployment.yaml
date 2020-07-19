@@ -30,6 +30,9 @@ spec:
         imagePullPolicy: ""
         name: jicofo
         resources: {}
+        envFrom:
+        - configMapRef:
+            name: my-config
         volumeMounts:
         - mountPath: /config
           name: jicofo-claim0

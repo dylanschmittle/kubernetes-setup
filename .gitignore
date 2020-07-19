@@ -8,3 +8,5 @@ mattermost/mattermost-operator.yaml
 mattermost/mysql-operator.yaml
 mattermost/minio-operator.yaml
 mattermost.yaml
+
+jitsi/jitsi-deployment/

@@ -1,22 +1,19 @@
 #!/bin/sh
 
-export READY_CHECK='true'
+# Set to 1 to disable check
+export READY_CHECK=1
 
-if [ ! -e namespaces_installed ]; then
-  echo "previous setup detected, using existing namespaces"
-else
-  kubectl create ns mattermost > namespaces_installed.log
-  kubectl create ns mattermost-operator >> namespaces_installed.log
-  kubectl create ns minio-operator >> namespaces_installed.log
-  kubectl create ns mysql-operator >> namespaces_installed.log
-fi
+# Create NS, hide output
+kubectl create ns mattermost >> /dev/null 2>&1
+kubectl create ns mattermost-operator >> /dev/null 2>&1
+kubectl create ns minio-operator >> /dev/null 2>&1
+kubectl create ns mysql-operator >> /dev/null 2>&1
 
 echo $(kubectl get all --all-namespaces) > pre-install-objects.log
 
 echo "Installing Mattermost Via Operator (MySQL MinIO Mattermost)"
 
-echo "Setup MySQL Operator (Random Username/Password Generated if Manifest is not present)"
-#kubectl create ns mysql-operator
+echo "Setup MySQL Operator"
 if [ ! -e "mysql-operator.yaml" ]; then
   wget https://raw.githubusercontent.com/mattermost/mattermost-operator/master/docs/mysql-operator/mysql-operator.yaml
   echo "Changing Password and Username(using openssl and base64)"
@@ -25,7 +22,6 @@ if [ ! -e "mysql-operator.yaml" ]; then
 else
   echo "Using Existing MySQL Operator and Credentials"
 fi
-
 echo "Installing MySQL Operator"
 kubectl apply -n mysql-operator -f mysql-operator.yaml -o json > installed_objects.json
 
@@ -49,7 +45,8 @@ fi
 echo "Installing Mattermost Operator"
 kubectl apply -n mattermost-operator -f mattermost-operator.yaml -o json >> installed_objects.json
 
-if [ ! -e "mattermost-operator.yaml" ]; then
+echo "Setup Mattermost Manifest"
+if [ ! -e "mattermost.yaml" ]; then
   echo -n "Enter Domain Name (mm.example.com): "
   read DOMAIN_NAME
   cp mattermost-template.yaml mattermost.yaml
@@ -58,13 +55,12 @@ if [ ! -e "mattermost-operator.yaml" ]; then
 else
   echo "Using Existing Mattermost Manifest/Domain $(cat mattermost.yaml| grep ingressName | cut -d":" -f2 | awk '{print $1, $2}')"
 fi
-
-echo "Installing Mattermost Manifest"
+echo "Install Mattermost Manifest"
 kubectl apply -n mattermost -f mattermost.yaml -o json >> installed_objects.json
 
 mv installed_objects.json post-install-objects.json
 
-if [ $READY_CHECK -le 'true']; then
+if [ $READY_CHECK -le 0 ]; then
   echo "Install Finished, Starting Ready Check (60 second loop)"
   while [ $(kubectl get deployments.apps -n mattermost | grep "my-mattermost" | awk '{print $2}' | grep 1 | cut -d "/" -f1) -le '0' ]
   do

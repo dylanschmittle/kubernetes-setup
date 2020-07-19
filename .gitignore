@@ -11,3 +11,7 @@ jitsi/k8s-jitsi-meet
 jitsi/jitsi-meet-helm
 
 wireguard/wg-operator
+*.ovpn
+*.key
+*.pem
+*.psk

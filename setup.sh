@@ -3,7 +3,7 @@
 read -p "Enter Domain Name (mm.example.com): " DOMAIN_NAME
 TIME=$(date +%s)
 
-echo $(kubectl get all --all-namespaces) > pre-install-objects-$(DOMAIN_NAME)-$(TIME).txt
+echo $(kubectl get all --all-namespaces) > pre-install-objects-$(DOMAIN_NAME)-$(TIME).log
 
 
 echo "Installing Mattermost For the Domain $DOMAIN_NAME"
@@ -48,5 +48,5 @@ sed -i "s/mm.example.com/$DOMAIN_NAME/g" mattermost.yaml
 echo "Installing Mattermost"
 kubectl apply -n mattermost -f mattermost.yaml >> installed_objects.txt
 
-mv installed_objects.txt post-install-objects-$(DOMAIN_NAME)-$(TIME).txt
+mv installed_objects.txt post-install-objects-$(DOMAIN_NAME)-$(TIME).log
 

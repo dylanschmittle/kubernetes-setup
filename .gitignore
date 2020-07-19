@@ -1,1 +1,4 @@
 mysql-operator.yaml
+*.log
+*.old
+old*/

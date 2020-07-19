@@ -1,5 +1,9 @@
 #!/bin/sh
 
+DOMAIN_NAME="mm.example.com"
+
+echo "Installing Mattermost For the Domain $DOMAIN_NAME"
+
 echo "Setup MySQL Operator"
 kubectl create ns mysql-operator
 if [ ! -e "mysql-operator.yaml" ]; then
@@ -11,7 +15,7 @@ else
   echo "Using Local MySQL Operator and Credentials"
 fi
 echo "Installing MySQL Operator"
-kubectl apply -n mysql-operator -f mysql-operator.yaml
+kubectl apply -n mysql-operator -f mysql-operator.yaml > installed_objects.txt
 
 echo "Setup MinIO Operator"
 kubectl create ns minio-operator
@@ -21,7 +25,8 @@ else
   echo "Using Local MinIO Operator"
 fi
 echo "Installing MinIO Operator"
-kubectl apply -n minio-operator -f minio-operator.yaml
+kubectl apply -n minio-operator -f minio-operator.yaml >> installed_objects.txt
+
 
 echo "Setup Mattermost Operator"
 kubectl create ns mattermost-operator
@@ -31,10 +36,12 @@ else
   echo "Using Local Mattermost Operator"
 fi
 echo "Installing Mattermost Operator"
-kubectl apply -n mattermost-operator -f mattermost-operator.yaml
+kubectl apply -n mattermost-operator -f mattermost-operator.yaml >> installed_objects.txt
+
 
 echo "Setup Mattermost Manifest"
 kubectl create ns mattermost
-kubectl apply -n mattermost -f mattermost.yaml
-
+sed -i "s/mm.example.com/$DOMAIN_NAME/g" mattermost.yaml
+echo "Installing Mattermost"
+kubectl apply -n mattermost -f mattermost.yaml >> installed_objects.txt
 

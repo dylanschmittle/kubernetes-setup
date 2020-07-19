@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - image: jitsi/web:latest
-        imagePullPolicy: ""
+        imagePullPolicy: Always
         name: web
         ports:
         - containerPort: 80

@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - image: jitsi/prosody:latest
-        imagePullPolicy: ""
+        imagePullPolicy: Always
         name: prosody
         ports:
         - containerPort: 5222

@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - image: jitsi/jvb:latest
-        imagePullPolicy: ""
+        imagePullPolicy: Always
         name: jvb
         ports:
         - containerPort: 10000

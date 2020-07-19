@@ -332,19 +332,5 @@ data:
     RESTART_POLICY=unless-stopped
 kind: ConfigMap
 metadata:
-  creationTimestamp: "2020-07-19T11:43:21Z"
-  managedFields:
-  - apiVersion: v1
-    fieldsType: FieldsV1
-    fieldsV1:
-      f:data:
-        .: {}
-        f:.env: {}
-    manager: kubectl
-    operation: Update
-    time: "2020-07-19T11:43:21Z"
   name: my-config
-  namespace: jitsi
-  resourceVersion: "2561204712"
-  selfLink: /api/v1/namespaces/jitsi/configmaps/my-config
-  uid: 8698b3ac-dc1c-4958-a70f-5ab1302d50c3
+  namespace: jitsi-meet

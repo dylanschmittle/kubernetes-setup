@@ -12,3 +12,5 @@ cp *.yml charts
 mv charts ../charts
 echo "add ingress's and certs to match the compose file, and set DNS A Records"
 echo "Fix Volumes for ~/.jitsi-meet-cfg/{web/letsencrypt,transcripts,prosody/config,prosody/prosody-plugins-custom,jicofo,jvb,jigasi,jibri}"
+cd ..
+mv docker-jitsi-meet /tmp/docker-jitsi-meet

@@ -8,5 +8,4 @@ helm install \
   --version v0.15.1 \
   --set installCRDs=true
 kubectl apply -f mattermost-certs.yaml -n cert-manager
-kubectl apply -f mattermost-issuer.yaml -n cert-manager
 kubectl apply -f mattermost-ingress.yaml -n mattermost

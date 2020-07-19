@@ -1,8 +1,10 @@
+# Ignore These, They are Logging for my setup script
 *.log
 *.old
-tmp/*
+*.json
 
-mattermost-operator.yaml
-mysql-operator.yaml
-minio-operator.yaml
+# Ignore these, they are produced by setup scripts
+mattermost/mattermost-operator.yaml
+mattermost/mysql-operator.yaml
+mattermost/minio-operator.yaml
 mattermost.yaml

@@ -1,0 +1,419 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": {},
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "ServiceAccount",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"ServiceAccount\",\"metadata\":{\"annotations\":{},\"name\":\"traefik-ingress\",\"namespace\":\"kube-system\"}}\n"
+                },
+                "creationTimestamp": "2020-07-19T04:22:21Z",
+                "managedFields": [
+                    {
+                        "apiVersion": "v1",
+                        "fieldsType": "FieldsV1",
+                        "fieldsV1": {
+                            "f:metadata": {
+                                "f:annotations": {
+                                    ".": {},
+                                    "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                                }
+                            }
+                        },
+                        "manager": "kubectl",
+                        "operation": "Update",
+                        "time": "2020-07-19T04:22:21Z"
+                    }
+                ],
+                "name": "traefik-ingress",
+                "namespace": "kube-system",
+                "resourceVersion": "2534398848",
+                "selfLink": "/api/v1/namespaces/kube-system/serviceaccounts/traefik-ingress",
+                "uid": "5ba108c3-270d-4eec-99e4-3e963e20ba4a"
+            }
+        },
+        {
+            "apiVersion": "rbac.authorization.k8s.io/v1beta1",
+            "kind": "ClusterRole",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"rbac.authorization.k8s.io/v1beta1\",\"kind\":\"ClusterRole\",\"metadata\":{\"annotations\":{},\"name\":\"traefik-ingress\"},\"rules\":[{\"apiGroups\":[\"\"],\"resources\":[\"services\",\"endpoints\",\"secrets\"],\"verbs\":[\"get\",\"list\",\"watch\"]},{\"apiGroups\":[\"extensions\"],\"resources\":[\"ingresses\"],\"verbs\":[\"get\",\"list\",\"watch\"]}]}\n"
+                },
+                "creationTimestamp": "2020-07-19T04:22:21Z",
+                "managedFields": [
+                    {
+                        "apiVersion": "rbac.authorization.k8s.io/v1beta1",
+                        "fieldsType": "FieldsV1",
+                        "fieldsV1": {
+                            "f:metadata": {
+                                "f:annotations": {
+                                    ".": {},
+                                    "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                                }
+                            },
+                            "f:rules": {}
+                        },
+                        "manager": "kubectl",
+                        "operation": "Update",
+                        "time": "2020-07-19T04:22:21Z"
+                    }
+                ],
+                "name": "traefik-ingress",
+                "resourceVersion": "2534399320",
+                "selfLink": "/apis/rbac.authorization.k8s.io/v1beta1/clusterroles/traefik-ingress",
+                "uid": "17251d3d-3f5b-47a2-a611-ad1deb3c3293"
+            },
+            "rules": [
+                {
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "services",
+                        "endpoints",
+                        "secrets"
+                    ],
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ]
+                },
+                {
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "ingresses"
+                    ],
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ]
+                }
+            ]
+        },
+        {
+            "apiVersion": "rbac.authorization.k8s.io/v1beta1",
+            "kind": "ClusterRoleBinding",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"rbac.authorization.k8s.io/v1beta1\",\"kind\":\"ClusterRoleBinding\",\"metadata\":{\"annotations\":{},\"name\":\"traefik-ingress\"},\"roleRef\":{\"apiGroup\":\"rbac.authorization.k8s.io\",\"kind\":\"ClusterRole\",\"name\":\"traefik-ingress\"},\"subjects\":[{\"kind\":\"ServiceAccount\",\"name\":\"traefik-ingress\",\"namespace\":\"kube-system\"}]}\n"
+                },
+                "creationTimestamp": "2020-07-19T04:22:21Z",
+                "managedFields": [
+                    {
+                        "apiVersion": "rbac.authorization.k8s.io/v1beta1",
+                        "fieldsType": "FieldsV1",
+                        "fieldsV1": {
+                            "f:metadata": {
+                                "f:annotations": {
+                                    ".": {},
+                                    "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                                }
+                            },
+                            "f:roleRef": {
+                                "f:apiGroup": {},
+                                "f:kind": {},
+                                "f:name": {}
+                            },
+                            "f:subjects": {}
+                        },
+                        "manager": "kubectl",
+                        "operation": "Update",
+                        "time": "2020-07-19T04:22:21Z"
+                    }
+                ],
+                "name": "traefik-ingress",
+                "resourceVersion": "2534399834",
+                "selfLink": "/apis/rbac.authorization.k8s.io/v1beta1/clusterrolebindings/traefik-ingress",
+                "uid": "b24e493c-6fff-44b4-9a0d-67dae53cf50c"
+            },
+            "roleRef": {
+                "apiGroup": "rbac.authorization.k8s.io",
+                "kind": "ClusterRole",
+                "name": "traefik-ingress"
+            },
+            "subjects": [
+                {
+                    "kind": "ServiceAccount",
+                    "name": "traefik-ingress",
+                    "namespace": "kube-system"
+                }
+            ]
+        }
+    ]
+}
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": {},
+    "items": [
+        {
+            "apiVersion": "extensions/v1beta1",
+            "kind": "Ingress",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"extensions/v1beta1\",\"kind\":\"Ingress\",\"metadata\":{\"annotations\":{},\"name\":\"test-ingress\",\"namespace\":\"default\"},\"spec\":{\"backend\":{\"serviceName\":\"defaultbackend\",\"servicePort\":80}}}\n"
+                },
+                "creationTimestamp": "2020-07-19T04:22:22Z",
+                "generation": 1,
+                "managedFields": [
+                    {
+                        "apiVersion": "extensions/v1beta1",
+                        "fieldsType": "FieldsV1",
+                        "fieldsV1": {
+                            "f:metadata": {
+                                "f:annotations": {
+                                    ".": {},
+                                    "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                                }
+                            },
+                            "f:spec": {
+                                "f:backend": {
+                                    ".": {},
+                                    "f:serviceName": {},
+                                    "f:servicePort": {}
+                                }
+                            }
+                        },
+                        "manager": "kubectl",
+                        "operation": "Update",
+                        "time": "2020-07-19T04:22:22Z"
+                    }
+                ],
+                "name": "test-ingress",
+                "namespace": "default",
+                "resourceVersion": "2534401039",
+                "selfLink": "/apis/extensions/v1beta1/namespaces/default/ingresses/test-ingress",
+                "uid": "700848b7-b313-457c-8d10-517db4ba4253"
+            },
+            "spec": {
+                "backend": {
+                    "serviceName": "defaultbackend",
+                    "servicePort": 80
+                }
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "apiVersion": "extensions/v1beta1",
+            "kind": "Ingress",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"extensions/v1beta1\",\"kind\":\"Ingress\",\"metadata\":{\"annotations\":{},\"name\":\"traefik-web-ui\",\"namespace\":\"kube-system\"},\"spec\":{\"rules\":[{\"host\":\"traefik-ui.minikube\",\"http\":{\"paths\":[{\"backend\":{\"serviceName\":\"traefik-web-ui\",\"servicePort\":\"web\"},\"path\":\"/\"}]}}]}}\n"
+                },
+                "creationTimestamp": "2020-07-19T04:22:23Z",
+                "generation": 1,
+                "managedFields": [
+                    {
+                        "apiVersion": "extensions/v1beta1",
+                        "fieldsType": "FieldsV1",
+                        "fieldsV1": {
+                            "f:metadata": {
+                                "f:annotations": {
+                                    ".": {},
+                                    "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                                }
+                            },
+                            "f:spec": {
+                                "f:rules": {}
+                            }
+                        },
+                        "manager": "kubectl",
+                        "operation": "Update",
+                        "time": "2020-07-19T04:22:23Z"
+                    }
+                ],
+                "name": "traefik-web-ui",
+                "namespace": "kube-system",
+                "resourceVersion": "2534402083",
+                "selfLink": "/apis/extensions/v1beta1/namespaces/kube-system/ingresses/traefik-web-ui",
+                "uid": "3747734e-e515-4845-95bf-4e77a883dff9"
+            },
+            "spec": {
+                "rules": [
+                    {
+                        "host": "traefik-ui.minikube",
+                        "http": {
+                            "paths": [
+                                {
+                                    "backend": {
+                                        "serviceName": "traefik-web-ui",
+                                        "servicePort": "web"
+                                    },
+                                    "path": "/",
+                                    "pathType": "ImplementationSpecific"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        }
+    ]
+}
+{
+    "apiVersion": "v1",
+    "kind": "Service",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"annotations\":{},\"name\":\"traefik-ingress-service\",\"namespace\":\"kube-system\"},\"spec\":{\"ports\":[{\"name\":\"web\",\"port\":80,\"protocol\":\"TCP\"},{\"name\":\"admin\",\"port\":8080,\"protocol\":\"TCP\"}],\"selector\":{\"k8s-app\":\"traefik-ingress-lb\"},\"type\":\"NodePort\"}}\n"
+        },
+        "creationTimestamp": "2020-07-19T04:22:25Z",
+        "managedFields": [
+            {
+                "apiVersion": "v1",
+                "fieldsType": "FieldsV1",
+                "fieldsV1": {
+                    "f:metadata": {
+                        "f:annotations": {
+                            ".": {},
+                            "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                        }
+                    },
+                    "f:spec": {
+                        "f:externalTrafficPolicy": {},
+                        "f:ports": {
+                            ".": {},
+                            "k:{\"port\":80,\"protocol\":\"TCP\"}": {
+                                ".": {},
+                                "f:name": {},
+                                "f:port": {},
+                                "f:protocol": {},
+                                "f:targetPort": {}
+                            },
+                            "k:{\"port\":8080,\"protocol\":\"TCP\"}": {
+                                ".": {},
+                                "f:name": {},
+                                "f:port": {},
+                                "f:protocol": {},
+                                "f:targetPort": {}
+                            }
+                        },
+                        "f:selector": {
+                            ".": {},
+                            "f:k8s-app": {}
+                        },
+                        "f:sessionAffinity": {},
+                        "f:type": {}
+                    }
+                },
+                "manager": "kubectl",
+                "operation": "Update",
+                "time": "2020-07-19T04:22:25Z"
+            }
+        ],
+        "name": "traefik-ingress-service",
+        "namespace": "kube-system",
+        "resourceVersion": "2534404375",
+        "selfLink": "/api/v1/namespaces/kube-system/services/traefik-ingress-service",
+        "uid": "c3d14165-af5c-4159-a1b4-aece76dc133d"
+    },
+    "spec": {
+        "clusterIP": "10.40.32.8",
+        "externalTrafficPolicy": "Cluster",
+        "ports": [
+            {
+                "name": "web",
+                "nodePort": 30055,
+                "port": 80,
+                "protocol": "TCP",
+                "targetPort": 80
+            },
+            {
+                "name": "admin",
+                "nodePort": 32321,
+                "port": 8080,
+                "protocol": "TCP",
+                "targetPort": 8080
+            }
+        ],
+        "selector": {
+            "k8s-app": "traefik-ingress-lb"
+        },
+        "sessionAffinity": "None",
+        "type": "NodePort"
+    },
+    "status": {
+        "loadBalancer": {}
+    }
+}
+{
+    "apiVersion": "v1",
+    "kind": "Service",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"annotations\":{},\"name\":\"traefik-web-ui\",\"namespace\":\"kube-system\"},\"spec\":{\"ports\":[{\"name\":\"web\",\"port\":80,\"targetPort\":8080}],\"selector\":{\"k8s-app\":\"traefik-ingress-lb\"}}}\n"
+        },
+        "creationTimestamp": "2020-07-19T04:22:27Z",
+        "managedFields": [
+            {
+                "apiVersion": "v1",
+                "fieldsType": "FieldsV1",
+                "fieldsV1": {
+                    "f:metadata": {
+                        "f:annotations": {
+                            ".": {},
+                            "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                        }
+                    },
+                    "f:spec": {
+                        "f:ports": {
+                            ".": {},
+                            "k:{\"port\":80,\"protocol\":\"TCP\"}": {
+                                ".": {},
+                                "f:name": {},
+                                "f:port": {},
+                                "f:protocol": {},
+                                "f:targetPort": {}
+                            }
+                        },
+                        "f:selector": {
+                            ".": {},
+                            "f:k8s-app": {}
+                        },
+                        "f:sessionAffinity": {},
+                        "f:type": {}
+                    }
+                },
+                "manager": "kubectl",
+                "operation": "Update",
+                "time": "2020-07-19T04:22:27Z"
+            }
+        ],
+        "name": "traefik-web-ui",
+        "namespace": "kube-system",
+        "resourceVersion": "2534406229",
+        "selfLink": "/api/v1/namespaces/kube-system/services/traefik-web-ui",
+        "uid": "4b1ee088-90e4-4c51-a6a7-bc915f72d8ef"
+    },
+    "spec": {
+        "clusterIP": "10.45.65.49",
+        "ports": [
+            {
+                "name": "web",
+                "port": 80,
+                "protocol": "TCP",
+                "targetPort": 8080
+            }
+        ],
+        "selector": {
+            "k8s-app": "traefik-ingress-lb"
+        },
+        "sessionAffinity": "None",
+        "type": "ClusterIP"
+    },
+    "status": {
+        "loadBalancer": {}
+    }
+}

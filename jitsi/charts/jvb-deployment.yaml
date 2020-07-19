@@ -40,6 +40,9 @@ spec:
       restartPolicy: Always
       serviceAccountName: ""
       volumes:
+      - name: config-vol
+        configMap:
+          name: my-config
       - name: jvb-claim0
         persistentVolumeClaim:
           claimName: jvb-claim0

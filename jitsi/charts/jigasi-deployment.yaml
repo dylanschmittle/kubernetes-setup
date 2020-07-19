@@ -147,4 +147,7 @@ spec:
       - name: jigasi-claim1
         persistentVolumeClaim:
           claimName: jigasi-claim1
+      - name: config-vol
+        configMap:
+          name: my-config
 status: {}

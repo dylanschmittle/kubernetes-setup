@@ -52,4 +52,7 @@ spec:
       - name: web-claim2
         persistentVolumeClaim:
           claimName: web-claim2
+      - name: config-vol
+        configMap:
+          name: my-config
 status: {}

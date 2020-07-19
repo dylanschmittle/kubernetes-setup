@@ -31,5 +31,8 @@ spec:
         resources: {}
       restartPolicy: Always
       serviceAccountName: ""
-      volumes: null
+      volumes: 
+      - name: config-vol
+        configMap:
+          name: my-config
 status: {}

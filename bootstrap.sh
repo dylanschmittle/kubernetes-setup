@@ -5,7 +5,7 @@
 #sh traefik/traefik-patch.sh
 
 # Setup Communication Tools
-cd mattermost && sh setup-alt.sh && cd ..
+cd mattermost && sh setup.sh && cd ..
 #sh letsencrypt/setup.sh
 cd cert-manager && sh setup.sh && cd ..
 

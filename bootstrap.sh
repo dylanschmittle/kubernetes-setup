@@ -1,8 +1,13 @@
 #!/bin/sh
 
-# Setup Mattermost with TLS
+# Setup Ingress and Certs
+cd ingress && sh setup.sh && cd ..
+
+# Setup Mattermost
 cd mattermost && sh setup.sh && cd ..
-cd cert-manager && sh setup.sh && cd ..
+
+# Setup Jitsi
+cd jitsi && sh setup.sh && cd ..
 
 # sh irc-server/setup.sh
 # sh irc-bouncer/setup.sh

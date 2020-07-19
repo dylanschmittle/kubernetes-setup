@@ -23,6 +23,7 @@ else
   echo "Using Existing MySQL Operator and Credentials"
 fi
 echo "Installing MySQL Operator"
+kubens mysql-operator
 kubectl apply -n mysql-operator -f mysql-operator.yaml -o json > installed_objects.json
 
 echo "Setup MinIO Operator"
@@ -33,6 +34,7 @@ else
   echo "Using Local MinIO Operator"
 fi
 echo "Installing MinIO Operator"
+kubens minio-operator
 kubectl apply -n minio-operator -f minio-operator.yaml -o json >> installed_objects.json
 
 echo "Setup Mattermost Operator"
@@ -43,6 +45,7 @@ else
   echo "Using Local Mattermost Operator"
 fi
 echo "Installing Mattermost Operator"
+kubens mattermost-operator
 kubectl apply -n mattermost-operator -f mattermost-operator.yaml -o json >> installed_objects.json
 
 echo "Setup Mattermost Manifest"
@@ -56,6 +59,7 @@ else
   echo "Using Existing Mattermost Manifest/Domain $(cat mattermost.yaml| grep ingressName | cut -d":" -f2 | awk '{print $1, $2}')"
 fi
 echo "Install Mattermost Manifest"
+kubens mattermost
 kubectl apply -n mattermost -f mattermost.yaml -o json >> installed_objects.json
 
 mv installed_objects.json post-install-objects.json

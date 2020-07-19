@@ -1,0 +1,29 @@
+WARN Volume mount on the host "/home/dylans/.jitsi-meet-cfg/jicofo" isn't supported - ignoring path on the host                                                                                                      
+INFO Network meet.jitsi is detected at Source, shall be converted to equivalent NetworkPolicy at Destination                                                                                                         
+WARN Volume mount on the host "/home/dylans/.jitsi-meet-cfg/jvb" isn't supported - ignoring path on the host                                                                                                         
+INFO Network meet.jitsi is detected at Source, shall be converted to equivalent NetworkPolicy at Destination                            
+WARN Volume mount on the host "/home/dylans/.jitsi-meet-cfg/prosody/config" isn't supported - ignoring path on the host                 
+WARN Volume mount on the host "/home/dylans/.jitsi-meet-cfg/prosody/prosody-plugins-custom" isn't supported - ignoring path on the host 
+INFO Network meet.jitsi is detected at Source, shall be converted to equivalent NetworkPolicy at Destination             
+WARN Volume mount on the host "/home/dylans/.jitsi-meet-cfg/web" isn't supported - ignoring path on the host             
+WARN Volume mount on the host "/home/dylans/.jitsi-meet-cfg/web/letsencrypt" isn't supported - ignoring path on the host 
+WARN Volume mount on the host "/home/dylans/.jitsi-meet-cfg/transcripts" isn't supported - ignoring path on the host 
+INFO Network meet.jitsi is detected at Source, shall be converted to equivalent NetworkPolicy at Destination 
+INFO Kubernetes file "jvb-service.yaml" created                                                           
+INFO Kubernetes file "prosody-service.yaml" created                                                       
+INFO Kubernetes file "web-service.yaml" created                                                           
+INFO Kubernetes file "jicofo-deployment.yaml" created                   
+INFO Kubernetes file "jicofo-claim0-persistentvolumeclaim.yaml" created 
+INFO Kubernetes file "meet.jitsi-networkpolicy.yaml" created 
+INFO Kubernetes file "jvb-deployment.yaml" created 
+INFO Kubernetes file "jvb-claim0-persistentvolumeclaim.yaml" created 
+INFO Kubernetes file "meet.jitsi-networkpolicy.yaml" created 
+INFO Kubernetes file "prosody-deployment.yaml" created 
+INFO Kubernetes file "prosody-claim0-persistentvolumeclaim.yaml" created 
+INFO Kubernetes file "prosody-claim1-persistentvolumeclaim.yaml" created 
+INFO Kubernetes file "meet.jitsi-networkpolicy.yaml" created 
+INFO Kubernetes file "web-deployment.yaml" created 
+INFO Kubernetes file "web-claim0-persistentvolumeclaim.yaml" created 
+INFO Kubernetes file "web-claim1-persistentvolumeclaim.yaml" created 
+INFO Kubernetes file "web-claim2-persistentvolumeclaim.yaml" created 
+INFO Kubernetes file "meet.jitsi-networkpolicy.yaml" created

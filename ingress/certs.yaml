@@ -1,7 +1,7 @@
 apiVersion: cert-manager.io/v1alpha2
 kind: Issuer
 metadata:
-  name: mattermost-selfsigned
+  name: dylanschmittle-casa-selfsigned
   namespace: cert-manager
 spec:
   selfSigned: {}
@@ -14,9 +14,11 @@ metadata:
 spec:
   dnsNames:
     - mattermost.dylanschmittle.casa
+    - meet.dylanschmittle.casa
+    - wireguard.dylanschmittle.casa
   secretName: selfsigned-cert-tls
   issuerRef:
-    name: mattermost-selfsigned
+    name: dylanschmittle-casa-selfsigned
 ---
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: jicofo
+  name: jicofo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: jicofo
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/meet.jitsi: "true"
+        io.kompose.service: jicofo
+    spec:
+      containers:
+      - image: jitsi/jicofo:latest
+        imagePullPolicy: ""
+        name: jicofo
+        resources: {}
+        volumeMounts:
+        - mountPath: /config
+          name: jicofo-claim0
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: jicofo-claim0
+        persistentVolumeClaim:
+          claimName: jicofo-claim0
+status: {}

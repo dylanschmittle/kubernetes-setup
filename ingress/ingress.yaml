@@ -27,6 +27,6 @@ spec:
       paths:
       - backend:
           serviceName: web
-          servicePort: 8000
+          servicePort: 80
         path: /
         pathType: ImplementationSpecific

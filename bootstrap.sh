@@ -1,27 +1,36 @@
 #!/bin/sh
 
+# Metrics
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml
+
+# Kubehunter
+cd kubehunter && sh setup.sh && cd ..
+
 # Setup Ingress and Certs
 cd ingress && sh setup.sh && cd ..
 
 # Setup Mattermost
 cd mattermost && sh setup.sh && cd ..
 
-# Setup Jitsi
+# Setup Jitsi (Using Free Service provided by jitsi *shrug*)
 #cd jitsi && sh setup.sh && cd ..
 
-# Setup Wireguard VPN
-cd wireguard && setup.sh && cd ..
+# Setup Wireguard VPN (Cluster Needs More Host Access)
+#cd wireguard && sh setup.sh && cd ..
 
-# sh irc-server/setup.sh
-# sh irc-bouncer/setup.sh
-# sh jitsi/setup.sh
-# sh email/setup.sh
-# sh nextcloud/setup.sh
+# Setup OpenVPN
+cd vpn/openvpn && sh setup.sh && cd ...
 
-# Setup VPN Teaming
-# sh proton-vpn/setup.sh
-# sh mulivad-vpn/setup.sh
+# Setup Kubevirt
+cd kubevirt && sh setup.sh && cd ..
 
+# Setup IRC
+cd irc && sh setup.sh && cd ..
+
+# Setup NextCloud (ingress/db issues with values yaml)
+#cd nextcloud && sh setup.sh && cd ..
+
+# Setup Pihole
 # sh pihole/setup.sh
 
 # Setup Tor Ip Rotating Workloads

@@ -15,3 +15,7 @@ wireguard/wg-operator
 *.key
 *.pem
 *.psk
+
+nextcloud/values.yaml
+
+jitsi/helm/helm-jitsi/

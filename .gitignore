@@ -1,4 +1,9 @@
-mysql-operator.yaml
 *.log
 *.old
-old*/
+tmp/*
+
+#mattermost-operator.yaml
+mysql-operator.yaml
+#minio-operator.yaml
+
+mattermost.yaml

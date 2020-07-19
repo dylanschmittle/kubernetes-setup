@@ -1,10 +1,10 @@
 apiVersion: mattermost.com/v1alpha1
 kind: ClusterInstallation
 metadata:
-  name: mm-small-traefik
+  name: my-mattermost
 spec:
   size: 100users
-  ingressName: mm.dylanschmittle.casa
+  ingressName: mm.example.com
   ingressAnnotations:
     kubernetes.io/ingress.class: traefik
   version: 5.19.1

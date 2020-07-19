@@ -11,6 +11,7 @@ spec:
     - mattermost.dylanschmittle.casa
     - meet.dylanschmittle.casa
     - wireguard.dylanschmittle.casa
+    - etherpad.dylanschmittle.casa
     secretName: letsencrypt-prod
   rules:
   - host: mattermost.dylanschmittle.casa
@@ -25,7 +26,7 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: my-jitsimeet
-          servicePort: 80
+          serviceName: web
+          servicePort: 8000
         path: /
         pathType: ImplementationSpecific

@@ -16,6 +16,7 @@ spec:
     - mattermost.dylanschmittle.casa
     - meet.dylanschmittle.casa
     - wireguard.dylanschmittle.casa
+    - etherpad.dylanschmittle.casa
   secretName: selfsigned-cert-tls
   issuerRef:
     name: dylanschmittle-casa-selfsigned

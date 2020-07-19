@@ -9,3 +9,5 @@ helm install \
   --set installCRDs=true
 kubectl apply -f certs.yaml -n cert-manager
 kubectl apply -f ingress.yaml -n kube-system
+kubectl apply -f ingress-udp-configmap.yaml -n kube-system
+kubectl apply -f ingress-tcp-configmap.yaml -n kube-system

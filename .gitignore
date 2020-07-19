@@ -2,8 +2,7 @@
 *.old
 tmp/*
 
-#mattermost-operator.yaml
+mattermost-operator.yaml
 mysql-operator.yaml
-#minio-operator.yaml
-
+minio-operator.yaml
 mattermost.yaml

@@ -7,7 +7,10 @@ cd ingress && sh setup.sh && cd ..
 cd mattermost && sh setup.sh && cd ..
 
 # Setup Jitsi
-cd jitsi && sh setup.sh && cd ..
+#cd jitsi && sh setup.sh && cd ..
+
+# Setup Wireguard VPN
+cd wireguard && setup.sh && cd ..
 
 # sh irc-server/setup.sh
 # sh irc-bouncer/setup.sh
@@ -18,7 +21,7 @@ cd jitsi && sh setup.sh && cd ..
 # Setup VPN Teaming
 # sh proton-vpn/setup.sh
 # sh mulivad-vpn/setup.sh
-# sh wireguard-vpn/setup.sh
+
 # sh pihole/setup.sh
 
 # Setup Tor Ip Rotating Workloads

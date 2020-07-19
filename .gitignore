@@ -9,3 +9,5 @@ jitsi/jitsi-deployment/
 jitsi/docker-jitsi-meet/
 jitsi/k8s-jitsi-meet
 jitsi/jitsi-meet-helm
+
+wireguard/wg-operator

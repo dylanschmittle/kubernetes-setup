@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export READY_CHECK='true'
+
 if [ ! -e namespaces_installed ]; then
   echo "previous setup detected, using existing namespaces"
 else
@@ -25,7 +27,7 @@ else
 fi
 
 echo "Installing MySQL Operator"
-kubectl apply -n mysql-operator -f mysql-operator.yaml > installed_objects.txt
+kubectl apply -n mysql-operator -f mysql-operator.yaml -o json > installed_objects.json
 
 echo "Setup MinIO Operator"
 #kubectl create ns minio-operator
@@ -35,7 +37,7 @@ else
   echo "Using Local MinIO Operator"
 fi
 echo "Installing MinIO Operator"
-kubectl apply -n minio-operator -f minio-operator.yaml >> installed_objects.txt
+kubectl apply -n minio-operator -f minio-operator.yaml -o json >> installed_objects.json
 
 echo "Setup Mattermost Operator"
 #kubectl create ns mattermost-operator
@@ -45,7 +47,7 @@ else
   echo "Using Local Mattermost Operator"
 fi
 echo "Installing Mattermost Operator"
-kubectl apply -n mattermost-operator -f mattermost-operator.yaml >> installed_objects.txt
+kubectl apply -n mattermost-operator -f mattermost-operator.yaml -o json >> installed_objects.json
 
 if [ ! -e "mattermost-operator.yaml" ]; then
   echo -n "Enter Domain Name (mm.example.com): "
@@ -58,14 +60,18 @@ else
 fi
 
 echo "Installing Mattermost Manifest"
-kubectl apply -n mattermost -f mattermost.yaml >> installed_objects.txt
+kubectl apply -n mattermost -f mattermost.yaml -o json >> installed_objects.json
 
-mv installed_objects.txt post-install-objects.log
+mv installed_objects.json post-install-objects.json
 
-echo "Status check loop untill deployment is ready"
-while [ $(kubectl get deployments.apps -n mattermost | awk '{print $2}' | grep 1 | cut -d "/" -f1) == '0' ]
-do
-  sh status.sh
-  sleep 60
-done
-
+if [ $READY_CHECK -le 'true']; then
+  echo "Install Finished, Starting Ready Check (60 second loop)"
+  while [ $(kubectl get deployments.apps -n mattermost | grep "my-mattermost" | awk '{print $2}' | grep 1 | cut -d "/" -f1) -le '0' ]
+  do
+    sh status.sh
+    sleep 60
+  done
+  echo "Service is Ready"
+else
+  echo "Install Finished, Ready Check Skipped run status.sh manually"
+fi

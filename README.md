@@ -10,7 +10,7 @@ Setup will ask you for a domain, and generate mysql passwords that are inserted 
 
 TODO: Parse installed objects and turn into a proper delete script
 
-[Stolen From](https://www.tauceti.blog/post/installing-mattermost-messaging-on-kubernetes/)
+[Refrence Used](https://www.tauceti.blog/post/installing-mattermost-messaging-on-kubernetes/)
 
 To Install/Apply Changes. Operator Manifests will be pulled if they are not present, make any changes, and run setup again to apply the changes.
 ```sh
@@ -24,4 +24,7 @@ To Reset/Remove Locally Loaded Operator Manifests
 ```sh
 ./reset.sh
 ```
-
+To Check the Status of An install
+```sh
+./status.sh
+```

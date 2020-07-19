@@ -1,12 +1,15 @@
 #!/bin/sh
 
-NAMESPACES=["mattermost", "mattermost-operator", "mysql-operator", "minio-operator"]
+NAMESPACES=("mattermost" "mattermost-operator" "mysql-operator" "minio-operator")
 
 for ns in "${NAMESPACES[@]}"
 do
    : 
-	echo "--Status Check--"
-	echo $i
+	echo "--------------------------------------------"
+	echo $ns
+	echo "--------------------------------------------"
+	echo "  Pods: "
+	kubectl get pods -n $ns
 	echo "  Objects: "
 	kubectl -n $ns get all -o wide
 	echo "  Deployments: "

@@ -13,6 +13,7 @@ kubectl delete ns mattermost
 kubectl delete ns mattermost-operator
 kubectl delete ns minio-operator
 kubectl delete ns mysql-operator
+rm namespaces_installed.log
 #echo "Run setup.sh to generate new manifests and install them"
 echo $(kubectl get all --all-namespaces) >> post-uninstall-objects-$(TIME).log
 echo "Check remaining-objects.txt for any hanging resources, full list of installed objects at installlog*.txt"

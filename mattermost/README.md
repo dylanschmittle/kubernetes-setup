@@ -2,9 +2,10 @@
 
 This Installs a small 100person mattermost server without elasticsearch
 
-This Assumes your are using traefik as your egress
+BROKEN: This Assumes your are using traefik as your egress
+BROKEN: Tested on 1.18 Manged Kube from scaleway with calico-cni and traefik2
 
-Tested on 1.18 Manged Kube from scaleway with calico-cni and traefik2
+## USE Alt install with cilium and nginx, it works out of the box
 
 Setup will ask you for a domain, and generate mysql passwords that are inserted into the manifest. If You change domains without running the reset, you must manually edit the mattermost.yaml file and rerun setup. 
 
@@ -38,4 +39,6 @@ To Check the Status of An install
 ./status.sh
 ```
 
-issues: time="2020-07-19T05:17:02Z" level=error msg="[opr] Unable to become leader" error="pods \"mattermost-operator-8ddd9c796-hfc9f\" is forbidden: User \"system:serviceaccount:default:mattermost-operator\" cannot get resource \"pods\" in API group \"\" in the namespace \"default\""
+Alternate NGINX Baremetal Nodeport Install
+```sh
+./setup-alt.sh

@@ -1,15 +1,18 @@
 #!/bin/sh
 
-# Set to 1 to disable check
 export READY_CHECK=1
+# 0 : lots of info from status.sh looped until ready
+# 1 : info and deployment status printed once, then exit
+# 2 : watch deployments util ready
 
 # Create NS, hide output
-kubectl create ns mattermost >> /dev/null 2>&1
-kubectl create ns mattermost-operator >> /dev/null 2>&1
-kubectl create ns minio-operator >> /dev/null 2>&1
-kubectl create ns mysql-operator >> /dev/null 2>&1
+kubectl create ns mattermost
+kubectl create ns mattermost-operator
+kubectl create ns minio-operator
+kubectl create ns mysql-operator
 
 echo $(kubectl get all --all-namespaces) > pre-install-objects.log
+echo "Traefik and Calico Cluster based installer starting"
 
 echo "Installing Mattermost Via Operator (MySQL MinIO Mattermost)"
 
@@ -73,5 +76,12 @@ if [ $READY_CHECK -le 0 ]; then
   done
   echo "Service is Ready"
 else
-  echo "Install Finished, Ready Check Skipped run status.sh manually"
+  sh status.sh
 fi
+
+if [ $READY_CHECK -le 2 ]; then
+  watch kubectl get deployments.apps -A
+else
+  kubectl get deployments.apps -A
+fi
+

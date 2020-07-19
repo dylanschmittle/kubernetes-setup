@@ -1,12 +1,14 @@
 #!/bin/sh
 
-# Setup Cluster Tools
-sh calico/calico-patch.sh
-sh traefik/traefik-patch.sh
-#sh letsencrypt/setup.sh
+# Setup Cluster Tools (Broken, use cilium and nginx)
+#sh calico/calico-patch.sh
+#sh traefik/traefik-patch.sh
 
 # Setup Communication Tools
-sh mattermost/setup.sh
+cd mattermost && sh setup-alt.sh && cd ..
+#sh letsencrypt/setup.sh
+cd cert-manager && sh setup.sh && cd ..
+
 # sh irc-server/setup.sh
 # sh irc-bouncer/setup.sh
 # sh jitsi/setup.sh
@@ -38,9 +40,9 @@ sh mattermost/setup.sh
 # sh i2p/setup.sh
 
 
-kubectl get events -A > events.txt
-kubectl get pods -o wide -A > pods.txt
-kubectl get all -o wide -A > objects.txt
-kubectl get deployments.apps -o wide -A > deployments.txt
+# kubectl get events -A > events.txt
+# kubectl get pods -o wide -A > pods.txt
+# kubectl get all -o wide -A > objects.txt
+# kubectl get deployments.apps -o wide -A > deployments.txt
 
 

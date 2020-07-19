@@ -1,9 +1,5 @@
 #!/bin/sh
 
-#export DOMAIN_NAME="mm.dylanschmittle.casa"
-echo -n "Enter Domain Name (mm.example.com): "
-read DOMAIN_NAME
-
 if [ ! -e namespaces_installed ]; then
   echo "previous setup detected, using existing namespaces"
 else
@@ -51,19 +47,25 @@ fi
 echo "Installing Mattermost Operator"
 kubectl apply -n mattermost-operator -f mattermost-operator.yaml >> installed_objects.txt
 
-
 if [ ! -e "mattermost-operator.yaml" ]; then
+  echo -n "Enter Domain Name (mm.example.com): "
+  read DOMAIN_NAME
   cp mattermost-template.yaml mattermost.yaml
+  OLD_DOMAIN=$(cat mattermost.yaml| grep ingressName | cut -d":" -f2 | awk '{print $1, $2}')
+  sed -i "s/$OLD_DOMAIN/$DOMAIN_NAME/g" mattermost.yaml
 else
-  echo "Using Existing Mattermost Manifest"
+  echo "Using Existing Mattermost Manifest/Domain $(cat mattermost.yaml| grep ingressName | cut -d":" -f2 | awk '{print $1, $2}')"
 fi
-echo "Replacing domain name in mattermost manifest"
-#kubectl create ns mattermost
-OLD_DOMAIN=$(cat mattermost.yaml| grep ingressName | cut -d":" -f2 | awk '{print $1, $2}')
-sed -i "s/$OLD_DOMAIN/$DOMAIN_NAME/g" mattermost.yaml
 
 echo "Installing Mattermost Manifest"
 kubectl apply -n mattermost -f mattermost.yaml >> installed_objects.txt
 
 mv installed_objects.txt post-install-objects.log
+
+echo "Status check loop untill deployment is ready"
+while [ $(kubectl get deployments.apps -n mattermost | awk '{print $2}' | grep 1 | cut -d "/" -f1) == '0' ]
+do
+  sh status.sh
+  sleep 60
+done
 

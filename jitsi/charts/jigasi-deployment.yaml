@@ -1,0 +1,150 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f jigasi.yml
+    kompose.version: 1.21.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: jigasi
+  name: jigasi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: jigasi
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f jigasi.yml
+        kompose.version: 1.21.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/meet.jitsi: "true"
+        io.kompose.service: jigasi
+    spec:
+      containers:
+      - image: jitsi/jigasi:latest
+        imagePullPolicy: ""
+        name: jigasi
+        ports:
+        - containerPort: 20000
+          protocol: UDP
+        - containerPort: 20001
+          protocol: UDP
+        - containerPort: 20002
+          protocol: UDP
+        - containerPort: 20003
+          protocol: UDP
+        - containerPort: 20004
+          protocol: UDP
+        - containerPort: 20005
+          protocol: UDP
+        - containerPort: 20006
+          protocol: UDP
+        - containerPort: 20007
+          protocol: UDP
+        - containerPort: 20008
+          protocol: UDP
+        - containerPort: 20009
+          protocol: UDP
+        - containerPort: 20010
+          protocol: UDP
+        - containerPort: 20011
+          protocol: UDP
+        - containerPort: 20012
+          protocol: UDP
+        - containerPort: 20013
+          protocol: UDP
+        - containerPort: 20014
+          protocol: UDP
+        - containerPort: 20015
+          protocol: UDP
+        - containerPort: 20016
+          protocol: UDP
+        - containerPort: 20017
+          protocol: UDP
+        - containerPort: 20018
+          protocol: UDP
+        - containerPort: 20019
+          protocol: UDP
+        - containerPort: 20020
+          protocol: UDP
+        - containerPort: 20021
+          protocol: UDP
+        - containerPort: 20022
+          protocol: UDP
+        - containerPort: 20023
+          protocol: UDP
+        - containerPort: 20024
+          protocol: UDP
+        - containerPort: 20025
+          protocol: UDP
+        - containerPort: 20026
+          protocol: UDP
+        - containerPort: 20027
+          protocol: UDP
+        - containerPort: 20028
+          protocol: UDP
+        - containerPort: 20029
+          protocol: UDP
+        - containerPort: 20030
+          protocol: UDP
+        - containerPort: 20031
+          protocol: UDP
+        - containerPort: 20032
+          protocol: UDP
+        - containerPort: 20033
+          protocol: UDP
+        - containerPort: 20034
+          protocol: UDP
+        - containerPort: 20035
+          protocol: UDP
+        - containerPort: 20036
+          protocol: UDP
+        - containerPort: 20037
+          protocol: UDP
+        - containerPort: 20038
+          protocol: UDP
+        - containerPort: 20039
+          protocol: UDP
+        - containerPort: 20040
+          protocol: UDP
+        - containerPort: 20041
+          protocol: UDP
+        - containerPort: 20042
+          protocol: UDP
+        - containerPort: 20043
+          protocol: UDP
+        - containerPort: 20044
+          protocol: UDP
+        - containerPort: 20045
+          protocol: UDP
+        - containerPort: 20046
+          protocol: UDP
+        - containerPort: 20047
+          protocol: UDP
+        - containerPort: 20048
+          protocol: UDP
+        - containerPort: 20049
+          protocol: UDP
+        - containerPort: 20050
+          protocol: UDP
+        resources: {}
+        volumeMounts:
+        - mountPath: /config
+          name: jigasi-claim0
+        - mountPath: /tmp/transcripts
+          name: jigasi-claim1
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: jigasi-claim0
+        persistentVolumeClaim:
+          claimName: jigasi-claim0
+      - name: jigasi-claim1
+        persistentVolumeClaim:
+          claimName: jigasi-claim1
+status: {}

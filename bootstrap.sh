@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Metrics
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml
+# Metrics 
+helm install metrics-server stable/metrics-server --version 2.9.0 --namespace metrics --create-namespace
 
 # Kubehunter
 cd kubehunter && sh setup.sh && cd ..

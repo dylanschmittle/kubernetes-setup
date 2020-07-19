@@ -1,0 +1,19 @@
+apiVersion: mattermost.com/v1alpha1
+kind: ClusterInstallation
+metadata:
+  name: mm-small-traefik
+spec:
+  size: 100users
+  ingressName: mm.dylanschmittle.casa
+  ingressAnnotations:
+    kubernetes.io/ingress.class: traefik
+  version: 5.19.1
+  mattermostLicenseSecret: ""
+  database:
+    storageSize: 10Gi
+  minio:
+    storageSize: 30Gi
+  elasticSearch:
+    host: ""
+    username: ""
+    password: ""

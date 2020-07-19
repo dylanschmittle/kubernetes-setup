@@ -7,3 +7,4 @@ NAMESPACE=openvpn
 ./create-client-cert.sh pinephone $NAMESPACE $RELEASE
 ./create-client-cert.sh tablet $NAMESPACE $RELEASE
 ./create-client-cert.sh rpi $NAMESPACE $RELEASE
+mv *.ovpn ~/Keys

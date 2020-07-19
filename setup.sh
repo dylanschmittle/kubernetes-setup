@@ -13,8 +13,8 @@ kubectl create ns mysql-operator
 if [ ! -e "mysql-operator.yaml" ]; then
   wget https://raw.githubusercontent.com/mattermost/mattermost-operator/master/docs/mysql-operator/mysql-operator.yaml
   echo "Changing Password and Username(using openssl and base64)"
-  sed -i "s/b3JjaGVzdHJhdG9y/$(openssl rand -base64 12)/g" mysql-operator.yaml
-  sed -i "s/YW1QZHlGN1VmRA==/$(openssl rand -base64 32)/g" mysql-operator.yaml
+  sed -i "s/b3JjaGVzdHJhdG9y/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1)/g" mysql-operator.yaml
+  sed -i "s/YW1QZHlGN1VmRA==/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 22 | head -n 1)/g" mysql-operator.yaml
 else
   echo "Using Local MySQL Operator and Credentials"
 fi

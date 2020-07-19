@@ -51,6 +51,12 @@ fi
 echo "Installing Mattermost Operator"
 kubectl apply -n mattermost-operator -f mattermost-operator.yaml >> installed_objects.txt
 
+
+if [ ! -e "mattermost-operator.yaml" ]; then
+  cp mattermost-template.yaml mattermost.yaml
+else
+  echo "Using Existing Mattermost Manifest"
+fi
 echo "Replacing domain name in mattermost manifest"
 #kubectl create ns mattermost
 OLD_DOMAIN=$(cat mattermost.yaml| grep ingressName | cut -d":" -f2 | awk '{print $1, $2}')

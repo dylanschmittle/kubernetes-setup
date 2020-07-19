@@ -10,7 +10,7 @@ Setup will ask you for a domain, and generate mysql passwords that are inserted 
 
 [Calico](https://docs.projectcalico.org/getting-started/kubernetes/quickstart)
 [Scaleway](https://developers.scaleway.com/en/products/k8s/api/)
-[Refrence Used](https://www.tauceti.blog/post/installing-mattermost-messaging-on-kubernetes/)
+[Refrence Used](https://docs.mattermost.com/install/install-kubernetes-operator.html)
 
 Make sure calico is working before you proceed, Calico Was missing some CRDS, install them with this
 ```sh
@@ -37,3 +37,5 @@ To Check the Status of An install
 ```sh
 ./status.sh
 ```
+
+issues: time="2020-07-19T05:17:02Z" level=error msg="[opr] Unable to become leader" error="pods \"mattermost-operator-8ddd9c796-hfc9f\" is forbidden: User \"system:serviceaccount:default:mattermost-operator\" cannot get resource \"pods\" in API group \"\" in the namespace \"default\""

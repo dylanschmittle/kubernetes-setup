@@ -1,9 +1,27 @@
-### Install Mattermost via Operators In kubernetes
-[Stolen From](https://www.tauceti.blog/post/installing-mattermost-messaging-on-kubernetes/)
-Change Hostname in mattermost.yaml and run setup.sh
-TODO: Prompt for hostname in setup, and sed the mattermost file
-TODO: Pull and Push images to Registry on Hosting Provider
-This should be idempotent, change the files created by the setup script and run it again
-To Fresh Install mattermost run reset.sh and then setup.sh, make changes to operator yaml and run setup.sh again to apply.
+### Idempotent Mattermost Install via Operators In kubernetes
 
+This Installs a small 100person mattermost server without elasticsearch
+
+This Assumes your are using traefik as your egress
+
+Tested on 1.18 Manged Kube from scaleway with calico-cni and traefik2
+
+Setup will ask you for a domain, and generate mysql passwords that are inserted into the manifest. If You change domains without running the reset, you must manually edit the mattermost.yaml file and rerun setup. 
+
+TODO: Parse installed objects and turn into a proper delete script
+
+[Stolen From](https://www.tauceti.blog/post/installing-mattermost-messaging-on-kubernetes/)
+
+To Install/Apply Changes. Operator Manifests will be pulled if they are not present, make any changes, and run setup again to apply the changes.
+```sh
+./setup.sh
+```
+To Uninstall
+```sh
+./uninstall.sh
+```
+To Reset/Remove Locally Loaded Operator Manifests
+```sh
+./reset.sh
+```
 

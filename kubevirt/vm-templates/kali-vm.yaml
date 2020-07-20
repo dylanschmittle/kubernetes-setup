@@ -1,0 +1,39 @@
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachine
+metadata:
+  labels:
+    kubevirt.io/vm: vm-kali-datavolume
+  name: vm-kali-datavolume
+spec:
+  running: false
+  template:
+    metadata:
+      labels:
+        kubevirt.io/vm: vm-kali-datavolume
+    spec:
+      domain:
+        devices:
+          disks:
+            - disk:
+                bus: virtio
+              name: datavolumedisk1
+        resources:
+          requests:
+            memory: 4G
+      volumes:
+        - dataVolume: #Note the type is dataVolume
+            name: kali-dv
+          name: datavolumedisk1
+  dataVolumeTemplates: # Automatically a PVC of size 2Gi is created
+    - metadata:
+        name: kali-dv
+      spec:
+        pvc:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 10Gi
+        source: #This is the source where the ISO file resides
+          http:
+            url: https://cdimage.kali.org/kali-2020.2/kali-linux-2020.2-live-amd64.iso

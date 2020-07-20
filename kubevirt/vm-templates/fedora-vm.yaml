@@ -1,7 +1,7 @@
 apiVersion: kubevirt.io/v1alpha3
 kind: VirtualMachineInstance
 metadata:
-  name: testvmi-nocloud
+  name: fedora
 spec:
   terminationGracePeriodSeconds: 30
   domain:
@@ -31,4 +31,4 @@ spec:
       userData: |-
         #cloud-config
         password: fedora
-        chpasswd: { expire: False }
+        chpasswd: { expire: True }

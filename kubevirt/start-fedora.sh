@@ -1,3 +1,3 @@
 #!/bin/sh
-kubectl apply -f fedora-vm.yaml
-virtctl console testvmi-nocloud
+kubectl apply -f vm-templates/fedora-vm.yaml
+virtctl console fedora

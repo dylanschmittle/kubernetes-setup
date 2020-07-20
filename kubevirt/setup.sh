@@ -4,3 +4,4 @@ echo $KUBEVIRT_VERSION
 kubectl create ns kubevirt && kubens kubevirt
 kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/${KUBEVIRT_VERSION}/kubevirt-operator.yaml
 kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/${KUBEVIRT_VERSION}/kubevirt-cr.yaml
+sh cdi/cdi-setup.sh

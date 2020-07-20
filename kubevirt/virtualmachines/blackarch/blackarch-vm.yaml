@@ -19,7 +19,7 @@ spec:
               name: datavolumedisk1
         resources:
           requests:
-            memory: 6G
+            memory: 1Gi
       volumes:
         - dataVolume: #Note the type is dataVolume
             name: blackarch-dv
@@ -33,7 +33,8 @@ spec:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 20Gi
+              storage: 16Gi
         source: #This is the source where the ISO file resides
           http:
-            url: https://ftp.halifax.rwth-aachen.de/blackarch/iso/blackarch-linux-live-2020.06.01-x86_64.iso
+            url: "https://ftp.halifax.rwth-aachen.de/blackarch/iso/blackarch-linux-live-2020.06.01-x86_64.iso"
+            secretRef: endpoint-secret

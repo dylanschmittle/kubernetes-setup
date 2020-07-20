@@ -1,0 +1,64 @@
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachine
+metadata:
+  labels:
+    kubevirt.io/vm: vm-alpine-datavolume
+  name: vm-alpine-datavolume
+spec:
+  running: false
+  template:
+    metadata:
+      labels:
+        kubevirt.io/vm: vm-alpine-datavolume
+    spec:
+      domain:
+        devices:
+          disks:
+            - disk:
+                bus: virtio
+              name: datavolumedisk1
+        resources:
+          requests:
+            memory: 64M
+      volumes:
+        - dataVolume: #Note the type is dataVolume
+            name: alpine-dv
+          name: datavolumedisk1
+  dataVolumeTemplates: # Automatically a PVC of size 2Gi is created
+    - metadata:
+        name: alpine-dv
+      spec:
+        pvc:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 2Gi
+        source: #This is the source where the ISO file resides
+          http:
+            url: "http://dl-cdn.alpinelinux.org/alpine/v3.12/releases/x86_64/alpine-standard-3.12.0-x86_64.iso"
+            secretRef: endpoint-secret
+---
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachineInstance
+metadata:
+  labels:
+    special: vm-alpine-datavolume
+  name: vmi-alpine
+spec:
+  domain:
+    devices:
+      disks:
+      - disk:
+          bus: virtio
+        name: datavolumedisk1
+    machine:
+      type: ""
+    resources:
+      requests:
+        memory: 64M
+  terminationGracePeriodSeconds: 0
+  volumes:
+  - name: datavolumedisk1 
+    dataVolume:
+      name: alpine-dv

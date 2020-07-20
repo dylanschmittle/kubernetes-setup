@@ -1,0 +1,23 @@
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachineInstance
+metadata:
+  labels:
+    special: vmi-kali-datavolume
+  name: vmi-kali
+spec:
+  domain:
+    devices:
+      disks:
+      - disk:
+          bus: virtio
+        name: datavolumedisk1
+    machine:
+      type: ""
+    resources:
+      requests:
+        memory: 1Gi
+  terminationGracePeriodSeconds: 30
+  volumes:
+  - name: datavolumedisk1
+    dataVolume:
+      name: kali-dv

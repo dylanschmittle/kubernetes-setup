@@ -1,32 +1,52 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: dylanschmittle-casa-ingress
+  name: mm-ingress
   annotations:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   tls:
   - hosts:
-    - mattermost.dylanschmittle.casa
-    - meet.dylanschmittle.casa
-    - wireguard.dylanschmittle.casa
-    - etherpad.dylanschmittle.casa
+    - mm.dylanschmittle.casa
     secretName: letsencrypt-prod
   rules:
-  - host: mattermost.dylanschmittle.casa
+  - host: mm.dylanschmittle.casa
     http:
       paths:
       - backend:
-          serviceName: my-mattermost
+          serviceName: mattermost
           servicePort: 8065
         path: /
         pathType: ImplementationSpecific
-  - host: meet.dylanschmittle.casa
-    http:
-      paths:
-      - backend:
-          serviceName: web
-          servicePort: 80
-        path: /
-        pathType: ImplementationSpecific
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: mm-certificate
+spec:
+  dnsNames:
+    - mm.dylanschmittle.casa
+  secretName: letsencrypt-prod
+  issuerRef:
+    name: letsencrypt-prod
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+  namespace: cert-manager
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: schmillin@protonmail.com
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    # Enable the HTTP-01 challenge provider
+    solvers:
+    - http01:
+        ingress:
+          class: nginx

@@ -1,31 +1,26 @@
 apiVersion: cert-manager.io/v1alpha2
 kind: Issuer
 metadata:
-  name: dylanschmittle-casa-selfsigned
-  namespace: cert-manager
+  name: issuer
 spec:
   selfSigned: {}
 ---
 apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
-  name: selfsigned-cert
-  namespace: cert-manager
+  name: root-certificate
 spec:
   dnsNames:
-    - mattermost.dylanschmittle.casa
-    - meet.dylanschmittle.casa
-    - wireguard.dylanschmittle.casa
-    - etherpad.dylanschmittle.casa
-  secretName: selfsigned-cert-tls
+    - dylanschmittle.casa
+    - *.dylanschmittle.casa
+  secretName: letsencrypt-prod
   issuerRef:
-    name: dylanschmittle-casa-selfsigned
+    name: cluster-issuer
 ---
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
-  name: letsencrypt-prod
-  namespace: cert-manager
+  name: cluster-issuer
 spec:
   acme:
     # The ACME server URL

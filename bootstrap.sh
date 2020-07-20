@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # Metrics 
-helm install metrics-server stable/metrics-server --version 2.9.0 --namespace metrics --create-namespace
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml
 
 # Kubehunter
-cd kubehunter && sh setup.sh && cd ..
+#cd kubehunter && sh setup.sh && cd ..
 
 # Setup Ingress and Certs
 cd ingress && sh setup.sh && cd ..
@@ -22,7 +22,7 @@ cd mattermost && sh setup.sh && cd ..
 cd vpn/openvpn && sh setup.sh && cd ...
 
 # Setup Kubevirt
-cd kubevirt && sh setup.sh && cd ..
+#cd kubevirt && sh setup.sh && cd ..
 
 # Setup IRC
 cd irc && sh setup.sh && cd ..

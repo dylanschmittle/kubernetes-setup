@@ -1,9 +1,9 @@
 #!/bin/sh
-kubectl create namespace cert-manager
-helm install \
-  cert-manager jetstack/cert-manager \
-  --namespace cert-manager \
-  --version v0.15.1 \
-  --set installCRDs=true
-kubectl apply -f ingress.yaml -n kube-system
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
 
+helm install cert-manager jetstack/cert-manager --create-namespace --namespace cert-manager --version v0.15.1 --set installCRDs=true
+helm install -n nginx-ingress --create-namespace my-release ingress-nginx/ingress-nginx
+
+kubectl apply -f charts/nginx.yaml
+#kubectl apply -f charts/istio.yaml

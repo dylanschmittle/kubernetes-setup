@@ -1,5 +1,5 @@
 #!/bin/sh
-kubectl create ns kubevirt && kubens kubevirt
-kubectl apply -f kubevirt-operator.yaml
-kubectl apply -f kubevirt-cr.yaml
-sh cdi/cdi-setup.sh
+kubectl create ns kubevirt
+kubectl create ns cdi
+kubectl apply -n kubevirt -f virt
+kubectl apply -n cdi -f cdi

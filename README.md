@@ -11,14 +11,3 @@
 ```sh
 ./bootstrap.sh
 ```
-TODO: Fix Nextcloud + Use s3
-TODO: Make Pentest VM Manifest
-TODO: Seedbox + s3 Archival
-TODO: Backup Server + s3 Archival
-TODO: Blog Platform
-TODO: Mastadon Server
-TODO: Run Privacy Network Nodes When Idle
-TODO: Etherium Test Net
-TODO: Pihole
-TODO: Honeypot VM
-TODO: Serverless Pentest Workloads + Concurrent Tor Proxys

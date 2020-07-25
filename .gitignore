@@ -1,21 +1,6 @@
 # Ignore these, they are produced by setup scripts
-mattermost/mattermost-operator.yaml
-mattermost/mysql-operator.yaml
-mattermost/minio-operator.yaml
-mattermost.yaml
 
-# Ignore nested repos
-jitsi/jitsi-deployment/
-jitsi/docker-jitsi-meet/
-jitsi/k8s-jitsi-meet
-jitsi/jitsi-meet-helm
+.ovpn
+.pem
+.key
 
-wireguard/wg-operator
-*.ovpn
-*.key
-*.pem
-*.psk
-
-nextcloud/values.yaml
-
-jitsi/helm/helm-jitsi/

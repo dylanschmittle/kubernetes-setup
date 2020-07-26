@@ -71,12 +71,13 @@ RUN set -ex \
     websocat \
     wireguard-tools \
     zsh \
-	  build-base
+    build-base \
+    unzip
 
 # proxychains 
 #RUN git clone https://github.com/haad/proxychains && cd proxychains && ./configure && make && sudo make install
 #RUN pip install stormssh 
-#RUN wget -O ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip && unzip ngrok -d /usr/local/bin 
+RUN wget -O ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip && unzip ngrok -d /usr/local/bin/ngrok
 
 # Griml zsh config    
 RUN wget -O .zshrc https://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
@@ -105,8 +106,8 @@ RUN wget https://github.com/gcla/termshark/releases/download/v${TERMSHARK_VERSIO
     mv termshark_${TERMSHARK_VERSION}_linux_x64/termshark /usr/local/bin/termshark && \
     chmod +x /usr/local/bin/termshark
 
-#RUN git clone https://github.com/RhinoSecurityLabs/ccat.git && cd ccat && python3 setup.py install
-RUN  git clone https://github.com/CISOfy/lynis && cd lynis && ./lynis audit system
+RUN git clone https://github.com/RhinoSecurityLabs/ccat.git
+RUN  git clone https://github.com/CISOfy/lynis
 
 
 # Settings

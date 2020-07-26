@@ -106,6 +106,8 @@ RUN wget https://github.com/gcla/termshark/releases/download/v${TERMSHARK_VERSIO
     chmod +x /usr/local/bin/termshark
 
 #RUN git clone https://github.com/RhinoSecurityLabs/ccat.git && cd ccat && python3 setup.py install
+RUN  git clone https://github.com/CISOfy/lynis && cd lynis && ./lynis audit system
+
 
 # Settings
 

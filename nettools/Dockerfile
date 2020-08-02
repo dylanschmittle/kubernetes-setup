@@ -30,7 +30,7 @@ RUN set -ex \
     iperf \
     iproute2 \
     ipset \
-    iptables \ 
+    iptables \
     iptraf-ng \
     iputils \
     ipvsadm \
@@ -71,7 +71,8 @@ RUN set -ex \
     websocat \
     wireguard-tools \
     zsh \
-	  build-base
+#	build-base \
+    openvpn \
 
 # proxychains 
 #RUN git clone https://github.com/haad/proxychains && cd proxychains && ./configure && make && sudo make install
